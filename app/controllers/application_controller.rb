@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
-    before :authenticate_user!
-    
+    before_action :authenticate_user!
+
 end
