@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem 'iex-ruby-client'
+gem 'faraday'
+gem 'faraday-retry'
 gem "font-awesome-rails"
 
 # Use Active Storage variant

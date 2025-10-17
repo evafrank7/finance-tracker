@@ -94,10 +94,10 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-multipart (1.1.1)
-      multipart-post (~> 2.0)
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+    faraday-retry (2.3.2)
+      faraday (~> 2.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -110,14 +110,8 @@ GEM
       railties (>= 3.2, < 9.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
-    hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    iex-ruby-client (2.1.0)
-      faraday (>= 0.17)
-      faraday-multipart
-      hashie
-      money (~> 6.0)
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -139,10 +133,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.26.0)
-    money (6.19.0)
-      i18n (>= 0.6.4, <= 2)
     msgpack (1.8.0)
-    multipart-post (2.4.1)
     net-http (0.6.0)
       uri
     net-imap (0.5.12)
@@ -302,8 +293,9 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   devise-bootstrap-views (~> 1.0)
+  faraday
+  faraday-retry
   font-awesome-rails
-  iex-ruby-client
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
