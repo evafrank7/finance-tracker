@@ -6,7 +6,13 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+// app/javascript/packs/application.js
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
+import "bootstrap"
+import "jquery"
+import "popper.js"
 
 Rails.start()
 Turbolinks.start()
