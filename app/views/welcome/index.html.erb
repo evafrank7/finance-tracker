@@ -1,8 +1,8 @@
 <h1> Welcome to the Finance Tracker Application</h1>
-<% if @quote&.dig('price') %>
-  <p>Price: <%= number_to_currency(@quote['price']) %></p>
-<% else %>
-  <p>Price: Unavailable</p>
-<% end %>
+<p>
+  Ticker: <%= @stock&.ticker || "—" %><br>
+  Name: <%= @stock&.name || "—" %><br>
+  Price: <%= @stock&.last_price ? number_to_currency(@stock.last_price) : "—" %>
+</p>
 
 <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-link p-0', form: { "data-turbo-confirm": "Sign out?" } %>
