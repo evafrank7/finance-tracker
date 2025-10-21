@@ -4,14 +4,10 @@ require "uri"
 require "bigdecimal"
 
 class Stock < ApplicationRecord
-  # Simple FMP stock lookup for Rails console usage
-  # Usage:
-  #   s = Stock.look_up("AAPL")
-  #   s.ticker  #=> "AAPL"
-  #   s.name    #=> "Apple Inc."
-  #   s.last_price #=> #<BigDecimal:...>
-  #
-  # Note: this builds a new (unsaved) Stock instance. Call `save` if you want it persisted.
+  has_many :user_stocks
+  has_many :users, through: :user_stocks
+
+  validates :name, :ticker, presence: true
 
   def self.look_up(ticker_symbol)
     return nil if ticker_symbol.blank?
