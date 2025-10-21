@@ -1,0 +1,14 @@
+<div class="results-block">
+  <%= render 'layouts/messages' %>
+</div>
+
+
+<% if defined?(@stock) && @stock.present? %>
+    <div class="card card-header results-block">
+      <strong> Symbol: </strong> <%= @stock.ticker %>
+      <strong> Name: </strong> <%= @stock.name %>
+      <strong> Price: </strong> <%= number_to_currency(@stock.last_price) %>
+    </div>
+<% else %>
+  <%# nothing to render (flash already set in controller) %>
+<% end %>

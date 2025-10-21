@@ -1,17 +1,20 @@
+# app/controllers/stocks_controller.rb
 class StocksController < ApplicationController
   def search
-    @symbol = params[:stock].to_s.upcase
-    @price  = Stock.new_lookup(@symbol)
+    symbol = params[:stock].to_s.upcase.strip
+    @tracked_stocks = current_user&.stocks || []
 
-    if @symbol.blank?
-        flash[:alert] = "Please enter a ticker and try again."
-        redirect_to my_portfolio_path
-      elsif @price.present?
-        @stock = @price.respond_to?(:last_price) ? @price : Stock.new(ticker: @symbol, name: @symbol, last_price: @price)
-        render 'users/my_portfolio'
-      else
-        flash[:alert] = "Price unavailable for #{@symbol}. Try another ticker."
-        redirect_to my_portfolio_path
-      end
+    if symbol.blank?
+      @stock = nil
+      flash.now[:alert] = "Please enter a ticker and try again."
+    else
+      @stock = Stock.look_up(symbol)  # <-- returns Stock or nil
+      flash.now[:alert] = "Price/company unavailable for #{symbol}." if @stock.nil?
+    end
+
+    respond_to do |format|
+      format.js   # renders app/views/stocks/search.js.erb
+      format.html { render "users/my_portfolio" }
+    end
   end
 end
