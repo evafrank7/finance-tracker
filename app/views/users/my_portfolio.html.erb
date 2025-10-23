@@ -17,7 +17,7 @@
 </div>
 
 <div id="results">
-
+  <%= render('stocks/stock', stock: @stock) if defined?(@stock) && @stock.present? %>
 </div>
 
 
