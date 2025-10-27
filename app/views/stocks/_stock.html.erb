@@ -2,7 +2,6 @@
   <%= render 'layouts/messages' %>
 </div>
 
-
 <% if defined?(@stock) && @stock.present? %>
     <div class="card results-block">
       <div class="card-body">
@@ -10,8 +9,9 @@
       <strong> Name: </strong> <%= @stock.name %>
       <strong> Price: </strong> <%= number_to_currency(@stock.last_price) %>
       <% if current_user.can_track_stock?(@stock.ticker)%>
-        <%= link_to 'Add to portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker),
-                                      class: "btn btn-sm btn-success", method: :post %> 
+        <%= button_to 'Add to portfolio',
+                      user_stocks_path(ticker: @stock.ticker),
+                      class: "btn btn-sm btn-success d-inline" %>
       <% else %>
         <span class="badge badge-secondary">
           You are already tracking
