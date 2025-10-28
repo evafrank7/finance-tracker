@@ -27,6 +27,11 @@ gem 'faraday'
 gem 'faraday-retry'
 gem "font-awesome-rails"
 
+# Bootstrap via Sprockets (Option B) and JS dependencies
+gem 'bootstrap', '~> 4.6.2'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.16.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
