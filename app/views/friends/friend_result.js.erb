@@ -1,6 +1,6 @@
 (() => {
   const el = document.querySelector('#friend-results');
-  el.innerHTML = "<%= j render(partial: 'friends/friend', collection: @friends, as: :friend) %>";
+  el.innerHTML = "<%= j render(partial: 'friends/friend') %>";
 
   <% if flash.now[:alert].present? %>
     el.insertAdjacentHTML('afterbegin', "<div class='alert alert-warning'><%= j flash.now[:alert] %></div>");

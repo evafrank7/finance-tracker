@@ -15,11 +15,14 @@
             <th scope="row"><%= friend.email %></th>
             <td><%= friend.first %></td>
             <td><%= friend.last %></td>
-            <td> <%= link_to 'Unfollow',
-                              '#',
-                              method: :delete,
-                              data: { confirm: 'Are you sure?' },
-                              class: "btn btn-sm btn-warning" %>
+            <td>
+              <% if (fs = current_user.friendships.find_by(friend_id: friend.id)) %>
+                <%= link_to 'Unfollow',
+                            friendship_path(fs),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' },
+                            class: "btn btn-sm btn-warning" %>
+              <% end %>
             </td>
           </tr>
         <% end %>

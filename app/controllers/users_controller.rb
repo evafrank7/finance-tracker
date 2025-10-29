@@ -22,9 +22,7 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      # This will render app/views/friends/friend_result.js.erb
       format.js { render 'friends/friend_result' }
-      # optional HTML fallback if someone hits it non-AJAX
       format.html { redirect_to my_friends_path }
     end
   end
