@@ -2,28 +2,32 @@
   <%= render 'layouts/messages' %>
 </div>
 
-<% if defined?(@stock) && @stock.present? %>
-    <div class="card results-block">
-      <div class="card-body">
-      <strong> Symbol: </strong> <%= @stock.ticker %>
-      <strong> Name: </strong> <%= @stock.name %>
-      <strong> Price: </strong> <%= number_to_currency(@stock.last_price) %>
-      <% if current_user.can_track_stock?(@stock.ticker)%>
-        <%= button_to 'Add to portfolio',
-                      user_stocks_path(ticker: @stock.ticker),
-                      class: "btn btn-sm btn-success d-inline" %>
-      <% else %>
-        <span class="badge badge-secondary">
-          You are already tracking
-          <% unless current_user.under_stock_limit? %>
-            10 stocks
+<div class="row">
+  <div class="col-9">  
+    <% if defined?(@stock) && @stock.present? %>
+        <div class="card results-block">
+          <div class="card-body">
+          <strong> Symbol: </strong> <%= @stock.ticker %>
+          <strong> Name: </strong> <%= @stock.name %>
+          <strong> Price: </strong> <%= number_to_currency(@stock.last_price) %>
+          <% if current_user.can_track_stock?(@stock.ticker)%>
+            <%= link_to 'Add to portfolio',
+                          user_stocks_path(ticker: @stock.ticker),
+                          method: :post, class: "btn btn-sm btn-success d-inline" %>
+          <% else %>
+            <span class="badge badge-secondary">
+              You are already tracking
+              <% unless current_user.under_stock_limit? %>
+                10 stocks
+              <% end %>
+              <% if current_user.stock_already_tracked?(@stock.ticker) %>
+                this stock
+              <% end %>
+            </span>
           <% end %>
-          <% if current_user.stock_already_tracked?(@stock.ticker) %>
-            this stock
-          <% end %>
-        </span>
-      <% end %>
 
+        </div>
     </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
