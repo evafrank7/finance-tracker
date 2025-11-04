@@ -12,17 +12,13 @@
       <tbody>
         <% @friends.each do |friend| %>
           <tr>
-            <th scope="row"><%= friend.email %></th>
+            <th><%= friend.email %></th>
             <td><%= friend.first %></td>
             <td><%= friend.last %></td>
-            <td>
-              <% if (fs = current_user.friendships.find_by(friend_id: friend.id)) %>
-                <%= link_to 'Unfollow',
-                            friendship_path(fs),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' },
-                            class: "btn btn-sm btn-warning" %>
-              <% end %>
+            <td><%= link_to 'View Profile', user_path(friend),
+            class: 'btn btn-sm btn-success' %>
+              <%= link_to 'Stop following', friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?'},
+                                          class: 'btn btn-sm btn-warning' %></td>
             </td>
           </tr>
         <% end %>
